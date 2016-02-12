@@ -15,13 +15,16 @@ var player;
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
         height: '390',
+        fs: 0,
         width: '640',
         videoId: 'Awf45u6zrP0',
+        playerVars:{'controls': 0, 'disablekb': 0, 'autoplay':1,'iv_load_policy': 3,'showinfo':0, 'rel':0, 'modestbranding':1},
         events: {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
         }
     });
+    player.getDuration();
 }
 
 // 4. The API will call this function when the video player is ready.
@@ -37,8 +40,13 @@ function onPlayerStateChange(event) {
     if (event.data == YT.PlayerState.PLAYING && !done) {
         setTimeout(stopVideo, 12000);
         done = true;
+
     }
 }
 function stopVideo() {
     player.stopVideo();
 }
+
+//function getfocus() {
+//    document.getElementById("body").focus();
+//}
